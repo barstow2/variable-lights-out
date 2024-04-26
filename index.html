@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lights Out Game</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your custom CSS file -->
+</head>
+<body class="bg-gray-200 flex flex-col items-center justify-center min-h-screen">
+    <!-- Header and Settings Icon Container -->
+    <div class="header-settings-container w-full max-w-lg px-4 flex justify-between items-center mt-4">
+        <!-- Header Displaying the Game Title -->
+        <header class="text-3xl font-bold mt-1 ml-2">VLO - Variable Lights Out</header>
+        <!-- Settings Icon -->
+        <div id="settingsIcon" style="cursor: pointer; font-size: 24px;">⚙️</div>
+    </div>
+    
+    <!-- Settings Panel, initially hidden -->
+    <div id="settingsPanel" class="settings bg-white p-4 rounded shadow-lg absolute top-20 right-50" style="display: none;">
+        <div>
+            <label for="gridSize">Grid Size (n x n):</label>
+            <input type="number" id="gridSize" value="3" min="3" max="10">
+        </div>
+        <div>
+            <label for="numStates">Number of States:</label>
+            <input type="number" id="numStates" value="2" min="2" max="5">
+        </div>
+        <div>
+            <label><input type="checkbox" id="diagonals" checked> Include Diagonals</label>
+        </div>
+        <div>
+            <label for="colorScheme">Color Scheme:</label>
+            <select id="colorScheme">
+                <option value="blue">Blue</option>
+                <option value="red">Red</option>
+                <option value="green">Green</option>
+                <option value="greyscale">Greyscale</option>
+            </select>
+        </div>        
+        <!-- Apply Settings Button -->
+        <button id="applySettings" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Apply Settings</button>
+        <!-- Close Button -->
+        <button id="closeSettings" class="ml-2 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Close</button>
+    </div>    
+
+    <!-- Game Grid Container -->
+    <div id="game" class="grid grid-cols-3 gap-2 mt-2"></div>
+    
+    <script src="app.js"></script>
+</body>
+</html>
