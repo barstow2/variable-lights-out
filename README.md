@@ -9,3 +9,5 @@ You can change whether you want to include diagonal moves or not.
 # Goal
 Try to get all the squares to be the same color.
 
+# Try it out here!
+https://barstow2.github.io/variable-lights-out/
