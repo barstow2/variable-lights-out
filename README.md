@@ -1,4 +1,4 @@
-VLO - Variable Lights Out
+# VLO - Variable Lights Out
 
 This game is a more generalized version of the popular combinatorial game "Lights Out."  
 
