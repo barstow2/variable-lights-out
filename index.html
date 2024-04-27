@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VLO - Variable Lights Out</title>
+    <title>Lights Out Game</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css"> <!-- Link to your custom CSS file -->
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body class="bg-gray-200 flex flex-col items-center justify-center min-h-screen">
     <!-- Header and Settings Icon Container -->
@@ -18,32 +17,34 @@
     </div>
     
     <!-- Settings Panel, initially hidden -->
-    <div id="settingsPanel" class="settings bg-white p-4 rounded shadow-lg absolute top-20 right-50" style="display: none;">
-        <div>
-            <label for="gridSize">Grid Size (n x n):</label>
-            <input type="number" id="gridSize" value="3" min="3" max="10">
+    <div id="settingsPanel" class="settings w-1/3 bg-white p-8 rounded-lg shadow-xl absolute top-20 right-50" style="display: none;">
+        <div class="mb-4">
+            <label for="gridSize" class="block text-lg font-medium text-gray-700">Grid Size (n x n):</label>
+            <input type="number" id="gridSize" value="3" min="3" max="10" class="mt-1 block w-full p-2 text-lg border-gray-300 rounded-md shadow-sm">
         </div>
-        <div>
-            <label for="numStates">Number of States:</label>
-            <input type="number" id="numStates" value="2" min="2" max="5">
+        <div class="mb-4">
+            <label for="numStates" class="block text-lg font-medium text-gray-700">Number of States:</label>
+            <input type="number" id="numStates" value="2" min="2" max="5" class="mt-1 block w-full p-2 text-lg border-gray-300 rounded-md shadow-sm">
         </div>
-        <div>
-            <label><input type="checkbox" id="diagonals" checked> Include Diagonals</label>
+        <div class="mb-4 flex items-center justify-between">
+            <label for="diagonals" class="text-lg font-medium text-gray-700">Include Diagonals</label>
+            <input type="checkbox" id="diagonals" checked class="h-5 w-5 text-indigo-600 mr-2">
         </div>
-        <div>
-            <label for="colorScheme">Color Scheme:</label>
-            <select id="colorScheme">
+        <div class="mb-4">
+            <label for="colorScheme" class="block text-lg font-medium text-gray-700">Color Scheme:</label>
+            <select id="colorScheme" class="mt-1 block w-full p-2 text-lg border-gray-300 rounded-md shadow-sm">
                 <option value="blue">Blue</option>
                 <option value="red">Red</option>
                 <option value="green">Green</option>
                 <option value="greyscale">Greyscale</option>
             </select>
-        </div>        
+        </div>
         <!-- Apply Settings Button -->
         <button id="applySettings" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Apply Settings</button>
         <!-- Close Button -->
         <button id="closeSettings" class="ml-2 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Close</button>
-    </div>    
+    </div>
+
 
     <!-- Game Grid Container -->
     <div id="game" class="grid grid-cols-3 gap-2 mt-2"></div>
