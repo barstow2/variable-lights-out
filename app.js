@@ -15,31 +15,36 @@ document.addEventListener('DOMContentLoaded', () => {
     const settingsIcon = document.getElementById('settingsIcon');
     const settingsPanel = document.getElementById('settingsPanel');
     const applySettingsBtn = document.getElementById('applySettings');
-    const closeSettingsBtn = document.getElementById('closeSettings'); // Get the close button
+    const closeSettingsBtn = document.getElementById('closeSettings');
 
-    // Initialize the game variable here, inside the DOMContentLoaded listener
+    // Set default values dynamically
+    document.getElementById('gridSize').value = '3';  // Default to 3x3 grid
+    document.getElementById('numStates').value = '2';  // Default to 2 states
+    document.getElementById('moveset').value = 'adjacent';  // Default moveset to 'Adjacent'
+    document.getElementById('colorScheme').value = 'blue';  // Default color scheme to 'Blue'
+
+    // Ensure the game container is initialized correctly
     game = document.getElementById('game');
 
+    // Toggle the settings panel visibility
     settingsIcon.addEventListener('click', () => {
-        // Toggle the display of the settings panel
         settingsPanel.style.display = settingsPanel.style.display === 'none' ? 'block' : 'none';
     });
 
+    // Apply the settings from the panel and hide it
     applySettingsBtn.addEventListener('click', () => {
-        // Apply settings and hide the settings panel
         updateSettings();
         settingsPanel.style.display = 'none';
     });
 
+    // Simply hide the settings panel
     closeSettingsBtn.addEventListener('click', () => {
-        // Hide the settings panel when the close button is clicked
         settingsPanel.style.display = 'none';
     });
 
+    // Initialize the game grid
     initializeGrid();
 });
-
-
 
 function initializeGrid() {
     game.innerHTML = '';
@@ -62,22 +67,56 @@ function initializeGrid() {
     scrambleGrid();
 }
 
-
 function toggleCells(index) {
     const row = Math.floor(index / n);
     const col = index % n;
 
-    toggleState(index);
-    if (col > 0) toggleState(index - 1);
-    if (col < n - 1) toggleState(index + 1);
-    if (row > 0) toggleState(index - n);
-    if (row < n - 1) toggleState(index + n);
-    if (includeDiagonals) {
+    toggleState(index); // Toggles the state of the clicked cell
+
+    // Handling moves based on selected moveset
+    const moveset = document.getElementById('moveset').value;
+    if (moveset === 'adjacent' || moveset === 'square') {
+        if (col > 0) toggleState(index - 1);
+        if (col < n - 1) toggleState(index + 1);
+        if (row > 0) toggleState(index - n);
+        if (row < n - 1) toggleState(index + n);
+    }
+    if (moveset === 'square' || moveset === 'diagonalsOnly') {
         if (row > 0 && col > 0) toggleState(index - n - 1);
         if (row > 0 && col < n - 1) toggleState(index - n + 1);
         if (row < n - 1 && col > 0) toggleState(index + n - 1);
         if (row < n - 1 && col < n - 1) toggleState(index + n + 1);
     }
+}
+
+function updateSettings() {
+    console.log("Updating settings...");
+
+    n = parseInt(document.getElementById('gridSize').value);
+    console.log("Grid size (n):", n);
+
+    m = parseInt(document.getElementById('numStates').value);
+    console.log("Number of states (m):", m);
+
+    colorScheme = document.getElementById('colorScheme').value;
+    colors = colorSchemes[colorScheme]; 
+    console.log("Color scheme:", colorScheme);
+
+    const moveset = document.getElementById('moveset').value;
+    console.log("Moveset:", moveset);
+    switch (moveset) {
+        case 'adjacent':
+            includeDiagonals = false;
+            break;
+        case 'square':
+            includeDiagonals = true;
+            break;
+        case 'diagonalsOnly':
+            includeDiagonals = 'diagonalsOnly';
+            break;
+    }
+
+    initializeGrid(); // Reinitialize the grid with new settings
 }
 
 function toggleState(index) {
@@ -104,15 +143,6 @@ function isSolved() {
     return Array.from(game.children).every(cell => cell.dataset.state === firstState);
 }
 
-function updateSettings() {
-    n = parseInt(document.getElementById('gridSize').value);
-    m = parseInt(document.getElementById('numStates').value);
-    includeDiagonals = document.getElementById('diagonals').checked;
-    colorScheme = document.getElementById('colorScheme').value;
-    colors = colorSchemes[colorScheme]; // Update colors based on selected scheme
-    initializeGrid();
-}
-
 function checkWin() {
     // Using setTimeout to delay the win check slightly
     setTimeout(function() {
@@ -123,4 +153,3 @@ function checkWin() {
         }
     }, 100); // Delay in milliseconds, adjust as necessary
 }
-
