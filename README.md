@@ -10,8 +10,11 @@ Click on the squares in the grid to change their color.
 
 # Movesets
 - Adajcent (Default)
+-   Changes the color of the square you clicked and its adjacent squares.
 - Square
+-   Like the adjacent moveset but also changes the color of squares diagonal to the one you clicked.
 - Diagonals Only
+-   Only changes colors of the diagonal squares.
 
 # Try it out here!
 https://barstow2.github.io/variable-lights-out/
