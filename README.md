@@ -9,8 +9,8 @@ Try to get all the squares to be the same color.
 Click on the squares in the grid to change their color.
 
 # Movesets
-- Adajcent (Default)
-* Changes the color of the square you clicked and its adjacent squares.
+* Adajcent (Default)
+  * Changes the color of the square you clicked and its adjacent squares.
 - Square
 -   Like the adjacent moveset but also changes the color of squares diagonal to the one you clicked.
 - Diagonals Only
