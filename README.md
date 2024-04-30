@@ -3,7 +3,7 @@
 This game is a more generalized version of the popular combinatorial game "Lights Out."  
 
 # Goal
-Try to get all the squares to be the same color.
+Try to get all the squares into the "off" state.
 
 # Rules
 Click on the squares in the grid to change their color.
