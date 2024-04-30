@@ -48,15 +48,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function initializeGrid() {
     game.innerHTML = '';
-    // Use 100% divided by n to create flexible grid columns and rows
+    // Setting the grid columns and rows equally based on the grid size
     game.style.gridTemplateColumns = `repeat(${n}, 1fr)`;
     game.style.gridTemplateRows = `repeat(${n}, 1fr)`;
 
     for (let i = 0; i < n * n; i++) {
         let cell = document.createElement('div');
-        cell.className = `cursor-pointer flex justify-center items-center`; // Using TailwindCSS for flexbox
-        cell.style.backgroundColor = colors[0];
-        cell.dataset.state = 0;
+        cell.className = `cursor-pointer flex justify-center items-center`; // Using TailwindCSS for styling
+        cell.style.backgroundColor = colors[0]; // Initial color for all cells
+        cell.dataset.state = 0; // All cells start in the 'off' state
         cell.dataset.index = i;
         cell.onclick = () => {
             toggleCells(i);
@@ -130,17 +130,17 @@ function toggleState(index) {
 function scrambleGrid() {
     let moveCount = 0;
     do {
-        for (let i = 0; i < 30; i++) { // Make 30 random moves
+        for (let i = 0; i < 30; i++) { // Perform 30 random toggles
             const randomIndex = Math.floor(Math.random() * (n * n));
             toggleCells(randomIndex);
         }
         moveCount++;
-    } while (isSolved()); // Keep scrambling if the puzzle is solved
+    } while (isSolved()); // Ensure the grid is not already solved
 }
 
 function isSolved() {
-    const firstState = game.children[0].dataset.state;
-    return Array.from(game.children).every(cell => cell.dataset.state === firstState);
+    // Check if every cell is in state 0
+    return Array.from(game.children).every(cell => parseInt(cell.dataset.state) === 0);
 }
 
 function checkWin() {
