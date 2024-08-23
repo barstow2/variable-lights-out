@@ -1,0 +1,38 @@
+- Classic Lights Out
+	- 5x5 grid, 2 states
+	
+	
+- Variables
+	- Size of grid (min = 2, max = 10)
+	- Number of states (min = 2, max = 5)
+	- Diagonals flipping diagonals (binary)
+	
+	
+- Features
+	- Progression system w/increasing difficulty 
+	- Leaderboards
+	- Save and resume
+	- Themes and customization (color palette)
+	- Tutorial
+	- Undo option
+	- Move number tracker
+	- Optimal number of moves
+	
+	
+--- 
+
+TODO
+
+- put up a picture when you win?
+
+- a message when you reach an unsolvable state
+	- figure out how to determine if a grid is unsolvable 
+
+- different grid types 
+	- regular polygons (triangular, hexagonal)
+	- non-polygonal tilings
+	
+- progression system
+	- increase grid size (only solvable grids)
+	- get the grid to be a letter or number 
+	- maybe achievements for reaching a letter or number
